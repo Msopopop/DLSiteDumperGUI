@@ -209,6 +209,7 @@ namespace DLSiteDumperCS
                 url = "https://" + url;
 
             var si = new ProcessStartInfo(url);
+            si.UseShellExecute = true;
             Process.Start( si );
             lb.LinkVisited = true;
         }

@@ -34,3 +34,5 @@ To use this tool you must agree that you are **legitimate buyer of DLSite conten
 
 # [Download EXE](https://github.com/wappenull/DLSiteDumperGUI/releases/download/v1.1/DLSiteDumperCS.exe)
 Now V1.1.
+It is using .NET framework 4.7.2 Get the runtime if you dont have it yet:
+https://dotnet.microsoft.com/download/dotnet-framework/net472
