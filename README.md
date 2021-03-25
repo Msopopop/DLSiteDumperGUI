@@ -24,5 +24,5 @@ Allows you to choose
 
 To use this tool you must agree that you are **legitimate buyer of DLSite content**. And only use this for your **personal viewing purpose**, in your own fap cave. Do not share the pirated content or your fap cave will burn down!
 
-# [Download EXE](https://github.com/wappenull/DLSiteDumperGUI/releases/download/v1.0/DLSiteDumperCS.exe)
-https://github.com/wappenull/DLSiteDumperGUI/releases/download/v1.0/DLSiteDumperCS.exe
+# [Download EXE](https://github.com/wappenull/DLSiteDumperGUI/releases/download/v1.1/DLSiteDumperCS.exe)
+Now V1.1.
