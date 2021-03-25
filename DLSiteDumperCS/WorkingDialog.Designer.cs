@@ -37,7 +37,7 @@ namespace DLSiteDumperCS
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.okButton.Location = new System.Drawing.Point(164, 85);
+            this.okButton.Location = new System.Drawing.Point(209, 129);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(99, 23);
             this.okButton.TabIndex = 24;
@@ -49,7 +49,7 @@ namespace DLSiteDumperCS
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(401, 36);
+            this.label1.Size = new System.Drawing.Size(499, 36);
             this.label1.TabIndex = 25;
             this.label1.Text = "Working very hard to populate your fap cave.\r\nHands off! Dont touch anything!";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -58,9 +58,9 @@ namespace DLSiteDumperCS
             // 
             this.statusText.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.statusText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusText.Location = new System.Drawing.Point(12, 45);
+            this.statusText.Location = new System.Drawing.Point(12, 59);
             this.statusText.Name = "statusText";
-            this.statusText.Size = new System.Drawing.Size(401, 37);
+            this.statusText.Size = new System.Drawing.Size(499, 57);
             this.statusText.TabIndex = 25;
             this.statusText.Text = "...Status...";
             this.statusText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -70,7 +70,7 @@ namespace DLSiteDumperCS
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(425, 120);
+            this.ClientSize = new System.Drawing.Size(523, 164);
             this.ControlBox = false;
             this.Controls.Add(this.statusText);
             this.Controls.Add(this.label1);

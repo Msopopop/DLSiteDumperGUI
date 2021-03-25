@@ -55,6 +55,8 @@ class ViewerDumper : IDisposable
     {
         if( viewer_process != IntPtr.Zero )
             CloseHandle( viewer_process );
+        if( m_BmpMemoryStream != null )
+            m_BmpMemoryStream.Dispose( );
     }
 
     public void Setup( int processId )
@@ -67,11 +69,11 @@ class ViewerDumper : IDisposable
 
         // Find all the subwindow by control ID
         viewer_button_parent = GetDlgItem( viewer_window_main, VIEWER_BUTTON_PARENT_CODE );
-        viewer_button_first = GetDlgItem( viewer_button_parent, VIEWER_BUTTON_FIRST_CODE );
-        viewer_button_next = GetDlgItem( viewer_button_parent, VIEWER_BUTTON_NEXT_CODE );
-        viewer_button_zoom = GetDlgItem( viewer_button_parent, VIEWER_BUTTON_ZOOM_CODE );
-        viewer_area_parent = GetDlgItem( viewer_window_main, VIEWER_AREA_PARENT_CODE );
-        viewer_area_main = GetDlgItem( viewer_area_parent, VIEWER_AREA_MAIN_CODE );
+        viewer_button_first  = GetDlgItem( viewer_button_parent, VIEWER_BUTTON_FIRST_CODE );
+        viewer_button_next   = GetDlgItem( viewer_button_parent, VIEWER_BUTTON_NEXT_CODE );
+        viewer_button_zoom   = GetDlgItem( viewer_button_parent, VIEWER_BUTTON_ZOOM_CODE );
+        viewer_area_parent   = GetDlgItem( viewer_window_main, VIEWER_AREA_PARENT_CODE );
+        viewer_area_main     = GetDlgItem( viewer_area_parent, VIEWER_AREA_MAIN_CODE );
 
         // Note: I tried to read status bar that displaying page number,
         // but looks like its text is hidden. So no auto page detection for now
@@ -207,8 +209,7 @@ class ViewerDumper : IDisposable
 
     public void DumpOne( )
     {
-        if( !m_ViewerState.hasData )
-            PrepareViewerForDump( );
+        PrepareViewerForDump( );
 
         _DumpOneImpl( BasePageOffset );
     }
@@ -243,11 +244,11 @@ class ViewerDumper : IDisposable
         bmf.bfSize = (uint)(Marshal.SizeOf( bmf ) + Marshal.SizeOf( bmi ) + imageSize);
         bmf.bfOffBits = (uint)(Marshal.SizeOf( bmf ) + Marshal.SizeOf( bmi ));
 
-        bmi.biSize = 40; // Size of info header, must be 40
-        bmi.biWidth = w;
-        bmi.biHeight = -h;
-        bmi.biPlanes = 1;
-        bmi.biBitCount = 32; // Data dumped from mem is 32bpp
+        bmi.biSize        = 40; // Size of info header, must be 40
+        bmi.biWidth       = w;
+        bmi.biHeight      = -h;
+        bmi.biPlanes      = 1;
+        bmi.biBitCount    = 32; // Data dumped from mem is 32bpp
         bmi.biCompression = 0;
         //bmi.biSizeImage = (uint)imageSize; // biSizeImage is not required if there is no compression
 
@@ -301,13 +302,17 @@ class ViewerDumper : IDisposable
                     Debug.Print( $"Failed to write to {outputPath}\n{e.Message}" );
                 }
 #endif
-                using( MemoryStream ms = new MemoryStream( bmfHeaderBytes.Length + bmiHeaderBytes.Length + actualByteRead ) )
+                // Transfer to in-memory BMP file and convert
                 {
-                    ms.Write( bmfHeaderBytes, 0, bmfHeaderBytes.Length );
-                    ms.Write( bmiHeaderBytes, 0, bmiHeaderBytes.Length );
-                    ms.Write( m_ImageDumpBuffer, 0, actualByteRead );
+                    if( m_BmpMemoryStream == null )
+                        m_BmpMemoryStream = new MemoryStream( );
+                    m_BmpMemoryStream.SetLength( 0 ); // Reset and reuse it
 
-                    Image bmp = Image.FromStream( ms );
+                    m_BmpMemoryStream.Write( bmfHeaderBytes, 0, bmfHeaderBytes.Length );
+                    m_BmpMemoryStream.Write( bmiHeaderBytes, 0, bmiHeaderBytes.Length );
+                    m_BmpMemoryStream.Write( m_ImageDumpBuffer, 0, actualByteRead );
+
+                    Image bmp = Image.FromStream( m_BmpMemoryStream );
 
                     if( TargetImageExt == "png" )
                         bmp.Save( outputPath, ImageFormat.Png );
@@ -321,6 +326,7 @@ class ViewerDumper : IDisposable
         }
     }
 
+    MemoryStream m_BmpMemoryStream;
     
     void _NextPage( )
     {

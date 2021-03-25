@@ -13,7 +13,7 @@ namespace DLSiteDumperCS
 {
     public partial class MainForm : Form
     {
-        const string DefaultExt = "png";
+        const string DefaultExt = "jpg";
 
         ViewerDumper m_Vd;
         string m_UsingImageExt;
@@ -81,7 +81,7 @@ namespace DLSiteDumperCS
             // Check if file already exists
             if( File.Exists( effectivePathTextBox.Text ) )
             {
-                InfoMsg( $"Looks like there is file exists at\n{effectivePathTextBox.Text}\nPlease fix this manually, for safety reason (loss of data), program will not continue." );
+                InfoMsg( $"Looks like there is file exists at\n{effectivePathTextBox.Text}\nPlease resolve this manually, for safety reason (loss of data), program will not continue." );
                 return;
             }
 
@@ -160,12 +160,12 @@ namespace DLSiteDumperCS
 
             var sfd              = new SaveFileDialog( );
             sfd.InitialDirectory = savePathTextBox.Text;
-            sfd.FileName = forecastFilename;
-            sfd.DefaultExt = m_UsingImageExt;
-            sfd.Filter = "Image file|*.*";
-            sfd.ValidateNames = false;
-            sfd.CheckFileExists = false;
-            sfd.CheckPathExists = true;
+            sfd.FileName         = forecastFilename;
+            sfd.DefaultExt       = m_UsingImageExt;
+            sfd.Filter           = "Image file|*.*";
+            sfd.ValidateNames    = false;
+            sfd.CheckFileExists  = false;
+            sfd.CheckPathExists  = true;
             sfd.RestoreDirectory = true;
 
             if( sfd.ShowDialog( ) == DialogResult.OK )
@@ -300,10 +300,10 @@ namespace DLSiteDumperCS
             images.Sort( cmp ); // Hopefully in ascending order
 
             var hg              = new HtmlImageReaderGenerator( );
-            hg.FileList = images.ToArray( );
-            hg.TemplateData = Resources.HtmlTemplate;
-            hg.IsRightToLeft = readStyleSelect.SelectedIndex == 0;
-            hg.OutputPath = Path.Combine( savePathTextBox.Text, "_reader.html" );
+            hg.FileList         = images.ToArray( );
+            hg.TemplateData     = Resources.HtmlTemplate;
+            hg.IsRightToLeft    = readStyleSelect.SelectedIndex == 0;
+            hg.OutputPath       = Path.Combine( savePathTextBox.Text, "_reader.html" );
             hg.ImageZoomPercent = (int)pageZoomPercent.Value;
 
             bool succeed = hg.Generate( );

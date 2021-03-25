@@ -67,6 +67,8 @@ namespace DLSiteDumperCS
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.startPageInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betweenPageDelay)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -77,7 +79,7 @@ namespace DLSiteDumperCS
             // 
             // rip
             // 
-            this.rip.Location = new System.Drawing.Point(16, 356);
+            this.rip.Location = new System.Drawing.Point(16, 373);
             this.rip.Name = "rip";
             this.rip.Size = new System.Drawing.Size(182, 42);
             this.rip.TabIndex = 0;
@@ -87,7 +89,7 @@ namespace DLSiteDumperCS
             // 
             // autoDetectPidButton
             // 
-            this.autoDetectPidButton.Location = new System.Drawing.Point(177, 20);
+            this.autoDetectPidButton.Location = new System.Drawing.Point(243, 20);
             this.autoDetectPidButton.Name = "autoDetectPidButton";
             this.autoDetectPidButton.Size = new System.Drawing.Size(75, 23);
             this.autoDetectPidButton.TabIndex = 1;
@@ -106,7 +108,7 @@ namespace DLSiteDumperCS
             // 
             // pidTextBox
             // 
-            this.pidTextBox.Location = new System.Drawing.Point(16, 22);
+            this.pidTextBox.Location = new System.Drawing.Point(82, 22);
             this.pidTextBox.Name = "pidTextBox";
             this.pidTextBox.Size = new System.Drawing.Size(155, 20);
             this.pidTextBox.TabIndex = 3;
@@ -169,7 +171,7 @@ namespace DLSiteDumperCS
             // 
             // savePathTextBox
             // 
-            this.savePathTextBox.Location = new System.Drawing.Point(16, 200);
+            this.savePathTextBox.Location = new System.Drawing.Point(16, 217);
             this.savePathTextBox.Name = "savePathTextBox";
             this.savePathTextBox.Size = new System.Drawing.Size(334, 20);
             this.savePathTextBox.TabIndex = 3;
@@ -178,7 +180,7 @@ namespace DLSiteDumperCS
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 184);
+            this.label6.Location = new System.Drawing.Point(13, 201);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(102, 13);
             this.label6.TabIndex = 2;
@@ -186,7 +188,7 @@ namespace DLSiteDumperCS
             // 
             // browseButton
             // 
-            this.browseButton.Location = new System.Drawing.Point(275, 171);
+            this.browseButton.Location = new System.Drawing.Point(275, 188);
             this.browseButton.Name = "browseButton";
             this.browseButton.Size = new System.Drawing.Size(75, 23);
             this.browseButton.TabIndex = 1;
@@ -206,7 +208,7 @@ namespace DLSiteDumperCS
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 223);
+            this.label8.Location = new System.Drawing.Point(13, 240);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(158, 13);
             this.label8.TabIndex = 2;
@@ -214,10 +216,11 @@ namespace DLSiteDumperCS
             // 
             // effectivePathTextBox
             // 
-            this.effectivePathTextBox.Location = new System.Drawing.Point(16, 239);
+            this.effectivePathTextBox.Location = new System.Drawing.Point(16, 256);
+            this.effectivePathTextBox.Multiline = true;
             this.effectivePathTextBox.Name = "effectivePathTextBox";
             this.effectivePathTextBox.ReadOnly = true;
-            this.effectivePathTextBox.Size = new System.Drawing.Size(334, 20);
+            this.effectivePathTextBox.Size = new System.Drawing.Size(334, 45);
             this.effectivePathTextBox.TabIndex = 7;
             // 
             // label9
@@ -231,35 +234,36 @@ namespace DLSiteDumperCS
             // 
             // imageExtSelect
             // 
+            this.imageExtSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.imageExtSelect.FormattingEnabled = true;
             this.imageExtSelect.Items.AddRange(new object[] {
             "png",
             "jpg"});
             this.imageExtSelect.Location = new System.Drawing.Point(150, 139);
             this.imageExtSelect.Name = "imageExtSelect";
-            this.imageExtSelect.Size = new System.Drawing.Size(121, 21);
+            this.imageExtSelect.Size = new System.Drawing.Size(74, 21);
             this.imageExtSelect.TabIndex = 10;
             this.imageExtSelect.SelectedIndexChanged += new System.EventHandler(this.imageExtSelect_SelectedIndexChanged);
             // 
             // testButton
             // 
-            this.testButton.Location = new System.Drawing.Point(204, 356);
+            this.testButton.Location = new System.Drawing.Point(204, 373);
             this.testButton.Name = "testButton";
             this.testButton.Size = new System.Drawing.Size(146, 42);
             this.testButton.TabIndex = 0;
-            this.testButton.Text = "Test dump current page in viewer";
+            this.testButton.Text = "Test dump 1 current page in viewer";
             this.testButton.UseVisualStyleBackColor = true;
             this.testButton.Click += new System.EventHandler(this.OnTestButton);
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(13, 283);
+            this.label10.Location = new System.Drawing.Point(13, 312);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(338, 54);
             this.label10.TabIndex = 2;
             this.label10.Text = "Wait N milisecond before capture.\r\nViewer needs some time between page to redraw," +
-    " \r\nif capture too fast you will get garbaged image.\r\nStandard is 1000ms. Can try" +
-    " lower this to 500 with fast PC.";
+    " \r\nif captured too fast you will get garbaged image.\r\nSafe is 1000ms. Can try lo" +
+    "wer this to 300ms with fast PC.";
             // 
             // betweenPageDelay
             // 
@@ -268,7 +272,7 @@ namespace DLSiteDumperCS
             0,
             0,
             0});
-            this.betweenPageDelay.Location = new System.Drawing.Point(277, 283);
+            this.betweenPageDelay.Location = new System.Drawing.Point(277, 312);
             this.betweenPageDelay.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -283,7 +287,7 @@ namespace DLSiteDumperCS
             this.betweenPageDelay.Size = new System.Drawing.Size(74, 20);
             this.betweenPageDelay.TabIndex = 9;
             this.betweenPageDelay.Value = new decimal(new int[] {
-            1000,
+            600,
             0,
             0,
             0});
@@ -351,6 +355,7 @@ namespace DLSiteDumperCS
             // 
             // readStyleSelect
             // 
+            this.readStyleSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.readStyleSelect.FormattingEnabled = true;
             this.readStyleSelect.Items.AddRange(new object[] {
             "Right to Left (Manga)",
@@ -472,6 +477,8 @@ namespace DLSiteDumperCS
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.browseButton);
             this.groupBox3.Controls.Add(this.linkLabel2);
             this.groupBox3.Controls.Add(this.imageExtSelect);
@@ -497,6 +504,24 @@ namespace DLSiteDumperCS
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Dumper";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(15, 26);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(60, 13);
+            this.label16.TabIndex = 13;
+            this.label16.Text = "Viewer PID";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(15, 169);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(192, 26);
+            this.label17.TabIndex = 14;
+            this.label17.Text = "jpg makes 2x smaller file for B&&W page.\r\n10x smaller for color page!";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -510,7 +535,7 @@ namespace DLSiteDumperCS
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "DLSite viewer dumper | by K.G. & typcn | C#GUI by Wappen | V1.0";
+            this.Text = "DLSite viewer dumper | by K.G. & typcn | C#GUI by Wappen | V1.1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.startPageInput)).EndInit();
@@ -566,6 +591,8 @@ namespace DLSiteDumperCS
         private System.Windows.Forms.Button genHtmlButton;
         private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
     }
 }
 
