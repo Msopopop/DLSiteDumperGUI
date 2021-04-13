@@ -33,7 +33,7 @@ Allows you to choose
 
 To use this tool you must agree that you are **legitimate buyer of DLSite content**. And only use this for your **personal viewing purpose**, in your own fap cave. Do not share the pirated content or your fap cave will burn down!
 
-# [Download EXE](https://github.com/wappenull/DLSiteDumperGUI/releases/download/v1.1/DLSiteDumperCS.exe)
+# [Download EXE](https://github.com/wappenull/DLSiteDumperGUI/releases/download/v1.2/DLSiteDumperCS.exe)
 Now V1.2
 It is using .NET framework 4.7.2 Get the runtime if you dont have it yet:
 https://dotnet.microsoft.com/download/dotnet-framework/net472
