@@ -13,10 +13,11 @@ namespace DLSiteDumperCS
 {
     public partial class MainForm : Form
     {
-        const string DefaultExt = "jpg";
-
         ViewerDumper m_Vd;
-        string m_UsingImageExt;
+
+        OutputFormat UsingOutputImageFormat => (OutputFormat)imageExtSelect.SelectedIndex;
+
+        string UsingImageExt => Helper.GetOutputExt( UsingOutputImageFormat );
 
         public MainForm( )
         {
@@ -29,13 +30,14 @@ namespace DLSiteDumperCS
 
         private void Form1_Load( object sender, EventArgs e )
         {
+            this.Text += $"| V {Application.ProductVersion}";
+
             // Auto detect PID on load
             int foundPid = _AutoDetectProcess( );
             pidTextBox.Text = foundPid.ToString( );
 
-            // Select PNG on start
-            imageExtSelect.SelectedIndex = imageExtSelect.FindString( DefaultExt );
-            m_UsingImageExt = DefaultExt;
+            // Select default ext on start
+            imageExtSelect.SelectedIndex = (int)OutputFormat.Jpeg50;
 
             // Auto pick some save path
             string initialSave = Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments );
@@ -97,12 +99,12 @@ namespace DLSiteDumperCS
 
             // Resetup if PID changed
             if( m_Vd.TargetPid != pid )
-                m_Vd.Setup( pid );
+                m_Vd.SetupTargetPid( pid );
 
             m_Vd.BasePageOffset = (int)startPageInput.Value;
             m_Vd.BaseSavePath = savePathTextBox.Text;
-            m_Vd.TargetImageExt = m_UsingImageExt;
             m_Vd.BetweenPageDelayMs = (int)betweenPageDelay.Value;
+            m_Vd.SetupOutputEncoder( UsingOutputImageFormat );
 
             if( !m_Vd.IsReady )
             {
@@ -156,12 +158,12 @@ namespace DLSiteDumperCS
 
         private void browseButton_Click( object sender, EventArgs e )
         {
-            string forecastFilename = ViewerDumper.GetFileNameForPage( (int)startPageInput.Value, m_UsingImageExt );
+            string forecastFilename = ViewerDumper.GetFileNameForPage( (int)startPageInput.Value, UsingImageExt );
 
             var sfd              = new SaveFileDialog( );
             sfd.InitialDirectory = savePathTextBox.Text;
             sfd.FileName         = forecastFilename;
-            sfd.DefaultExt       = m_UsingImageExt;
+            sfd.DefaultExt       = UsingImageExt;
             sfd.Filter           = "Image file|*.*";
             sfd.ValidateNames    = false;
             sfd.CheckFileExists  = false;
@@ -182,7 +184,6 @@ namespace DLSiteDumperCS
 
         private void imageExtSelect_SelectedIndexChanged( object sender, EventArgs e )
         {
-            m_UsingImageExt = imageExtSelect.Text;
             _UpdateEffectivePath( );
         }
 
@@ -193,7 +194,7 @@ namespace DLSiteDumperCS
 
         private void _UpdateEffectivePath( )
         {
-            effectivePathTextBox.Text = Path.Combine( savePathTextBox.Text, ViewerDumper.GetFileNameForPage( (int)startPageInput.Value, m_UsingImageExt ) );
+            effectivePathTextBox.Text = Path.Combine( savePathTextBox.Text, ViewerDumper.GetFileNameForPage( (int)startPageInput.Value, UsingImageExt ) );
         }
 
         private void OpenUrlFromLinkLabel( object sender, LinkLabelLinkClickedEventArgs e )
@@ -267,7 +268,8 @@ namespace DLSiteDumperCS
 
         private void BackgroundWorker1_RunWorkerCompleted( object sender, RunWorkerCompletedEventArgs e )
         {
-            m_Popup.Close( );
+            m_Popup.Close( ); // Note: this will dispose, so also set null, credit to ntsa (https://forums.e-hentai.org/index.php?showuser=189943) for this finding
+            m_Popup = null;
 
             if( e.Cancelled )
                 InfoMsg( "User cancelled operation. Are you joking to me?" );
@@ -326,4 +328,26 @@ namespace DLSiteDumperCS
 
     }
 
+    // Choice order in imageExtSelect must be by this
+    enum OutputFormat
+    {
+        Jpeg80,
+        Jpeg50,
+        Png
+    }
+
+    static class Helper
+    {
+        public static string GetOutputExt( OutputFormat f )
+        {
+            switch( f )
+            {
+                case OutputFormat.Jpeg80: // JPG 80%
+                case OutputFormat.Jpeg50: // JPG 50%
+                    return "jpg";
+                default:
+                    return "png";
+            }
+        }
+    }
 }

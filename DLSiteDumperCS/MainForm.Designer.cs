@@ -67,8 +67,9 @@ namespace DLSiteDumperCS
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.startPageInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betweenPageDelay)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -237,8 +238,9 @@ namespace DLSiteDumperCS
             this.imageExtSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.imageExtSelect.FormattingEnabled = true;
             this.imageExtSelect.Items.AddRange(new object[] {
-            "png",
-            "jpg"});
+            "jpg 80%",
+            "jpg 50%",
+            "png"});
             this.imageExtSelect.Location = new System.Drawing.Point(150, 139);
             this.imageExtSelect.Name = "imageExtSelect";
             this.imageExtSelect.Size = new System.Drawing.Size(74, 21);
@@ -340,7 +342,7 @@ namespace DLSiteDumperCS
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(19, 138);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(349, 52);
+            this.label13.Size = new System.Drawing.Size(343, 52);
             this.label13.TabIndex = 10;
             this.label13.Text = resources.GetString("label13.Text");
             // 
@@ -409,13 +411,12 @@ namespace DLSiteDumperCS
             // 
             // linkLabel2
             // 
-            this.linkLabel2.AutoSize = true;
             this.linkLabel2.Location = new System.Drawing.Point(13, 478);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(274, 13);
+            this.linkLabel2.Size = new System.Drawing.Size(349, 33);
             this.linkLabel2.TabIndex = 12;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "https://forums.e-hentai.org/index.php?showtopic=92167";
+            this.linkLabel2.Text = "https://forums.e-hentai.org/index.php?s=&showtopic=92167&view=findpost&p=5878056";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenUrlFromLinkLabel);
             // 
             // linkLabel3
@@ -431,6 +432,7 @@ namespace DLSiteDumperCS
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.linkLabel4);
             this.groupBox2.Controls.Add(this.linkLabel3);
@@ -504,6 +506,16 @@ namespace DLSiteDumperCS
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Dumper";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(15, 169);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(248, 26);
+            this.label17.TabIndex = 14;
+            this.label17.Text = "jpg 50% quality makes 2x smaller file for B&&W page.\r\n10x smaller for color page " +
+    "vs PNG!";
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -513,14 +525,13 @@ namespace DLSiteDumperCS
             this.label16.TabIndex = 13;
             this.label16.Text = "Viewer PID";
             // 
-            // label17
+            // label18
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(15, 169);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(192, 26);
-            this.label17.TabIndex = 14;
-            this.label17.Text = "jpg makes 2x smaller file for B&&W page.\r\n10x smaller for color page!";
+            this.label18.Image = global::DLSiteDumperCS.Properties.Resources.dldump_icon;
+            this.label18.Location = new System.Drawing.Point(287, 16);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(81, 74);
+            this.label18.TabIndex = 15;
             // 
             // MainForm
             // 
@@ -531,11 +542,12 @@ namespace DLSiteDumperCS
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "DLSite viewer dumper | by K.G. & typcn | C#GUI by Wappen | V1.1";
+            this.Text = "DLSite viewer dumper | by K.G. & typcn | C#GUI by Wappen ";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.startPageInput)).EndInit();
@@ -593,6 +605,7 @@ namespace DLSiteDumperCS
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
     }
 }
 
