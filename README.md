@@ -40,3 +40,7 @@ Now V1.2
 
 It is using .NET framework 4.7.2 Get the runtime if you dont have it yet:
 https://dotnet.microsoft.com/download/dotnet-framework/net472
+
+# Advertisement to related tools
+ * Looking to RIP PDF manga into images? use our program from the same brand! same messy UI, same shit, but it just works and no BS.
+   https://github.com/wappenull/PdfToImageGUI
