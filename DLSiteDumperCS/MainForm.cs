@@ -325,7 +325,15 @@ namespace DLSiteDumperCS
             }
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void readStyleSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
     // Choice order in imageExtSelect must be by this
